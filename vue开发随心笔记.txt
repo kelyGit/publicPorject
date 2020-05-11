@@ -1,0 +1,1026 @@
+
+http://www.jinneng-sj.com/
+
+
+http://www.jienengjc.com/index.html
+
+王龙阿里云：
+
+www.kingzao.cn  22
+vue
+vue
+
+获得root
+4845664.  直接用su  
+
+linux
+
+运行vue  ： nohup npm run dev &
+
+
+www.kingzao.cn:8080
+
+
+http://www.kingzao.cn/h5Index/
+
+git pull origin dev 
+
+
+
+
+nginx  配置文件
+cd /usr/local/nginx/conf/
+
+vi /usr/local/nginx/conf/nginx.conf
+
+cd  /usr/local/nginx/sbin  
+
+
+/usr/local/nginx/sbin/nginx -s reload
+
+
+用root
+cd /usr/local/nginx/sbin  
+./nginx -s stop
+./nginx
+
+
+nginx 问题-------------------------------------------------------------------------------------------------------------------------
+
+linux 部署静态 文件：
+
+
+访问静态文件：403
+
+目录权限问题 ：
+linux 修改目录文件下所有文件的权限
+原创卜可 最后发布于2017-08-21 14:25:19 阅读数 49355  收藏
+展开
+以下命令行修改指定目录下的所有文件的权限为全体可读、可修改、可执行
+
+chmod -R 777 apache-tomcat-8.5.20/
+
+
+
+
+
+
+
+
+
+linux命令 --------------------------------------------------------------------
+
+平滑重启
+kill -HUP{Nginx主进程号}
+
+
+重启命令
+/ngingx /sbin/nginx -s reload
+
+查看进程命令
+
+ps -ef | grep nginx
+
+新建目录    mkdir 目录名
+查询 pwd  
+删除目录  rm -r 目录名  
+ 
+ vim---------------------------------------
+保存，但不退出vi                          :w
+ 
+保存并退出vi                                 :wq
+ 
+退出vi，但不保存更改                   :q!
+ 
+用其他文件名保存                         :w filename
+ 
+在现有文件中保存并覆盖该文件    :w! filename
+
+=================================================
+which svn
+结果会显示：
+/usr/bin/svn
+
+whereis svn
+
+
+git命令--------------------------------------------------------------------------------------------------------------------------------------------------------
+git强制覆盖本地命令（单条执行）：
+git fetch --all && git reset --hard origin/dev && git pull
+
+========================================
+2、linux上安装git(客户端)及GitHub的配置
+在linix上安装git时可能出现：-bash: git: command not found 错误 即找不到命令
+
+ 
+
+Centos 7 64位：
+
+分别执行：
+
+wget http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+
+rpm -ivh epel-release-latest-7.noarch.rpm
+Centos 6 32位:
+
+get http://dl.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
+
+rpm -ivh epel-release-6-8.noarch.rpm
+通过git安装命令:
+
+yum install -y git
+安装完成进行查看：
+
+git version
+输出了版本号表示安装成功
+
+为了保证git服务器和我们自己的测试服务器能正常通信所以需要填入公钥信息
+
+由于git的认证授权是基于公钥和私钥的体系，所以需要授权证书来保证测试服务器和git服务器的正常授信
+
+生成授权证书:
+
+ssh-keygen -t rsa -C “xxxxxx@qq.com”
+接下来一路enter下一步即可：
+
+通过命令：
+
+cd ~/.ssh/ 
+在通过ls或者ll命令查看列表，可以发现有2个文件：
+
+一个是id_rsa、id_rsa.pub 分别为私钥和公钥
+
+
+通过编辑器：
+vim id_rsa.pub
+或
+cat id_rsa.pub
+再将公钥信息拷贝，接下来登录GitHub 选择→settings→SSH and GPG keys →New SSH key，title随便输入，将以上拷贝的公钥信息填入 最后Add SSH key
+最后到控制台进行测试：
+ssh git@github.com
+接下来会看到：
+The authenticity of host 'github.com (52.74.223.119)' can't be established.
+RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
+RSA key fingerprint is MD5:16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.
+Are you sure you want to continue connecting (yes/no)? yes
+输入yes
+
+看到如下信息表示成功：
+
+Warning: Permanently added 'github.com,xxxxxx' (RSA) to the list of known hosts.
+
+PTY allocation request failed on channel 0
+
+Hi wanghaiy! You've successfully authenticated, but GitHub does not provide shell access.
+
+Connection to github.com closed.
+
+ 
+
+至此就完成了git的安装与GitHub的配置
+
+
+
+vue 问题----------------------------------------------------------------------------------------------------------
+
+===========================================================
+==.
+
+vue 技术准备，入门了解
+
+
+---------------------------------------------------------------------------------------------
+给项目加上语法报错和代码规范检查
+我们安装 eslint， 用来检查语法报错，当我们书写 js 时，有错误的地方会出现提示。
+
+npm install eslint eslint-config-enough babel-eslint eslint-loader --save-dev
+
+npm install 命令含义：可以一条命令同时安装多个包，包之间用空格分隔。包会被安装进 node_modules 目录中。
+--save-dev 会把安装的包和版本号记录到 package.json 中的 devDependencies 对象中，还有一个 --save， 会记录到 dependencies 对象中，它们的区别，我们可以先简单的理解为打包工具和测试工具用到的包使用 --save-dev 存到 devDependencies， 比如 eslint、webpack。浏览器中执行的 js 用到的包存到 dependencies， 比如 jQuery 等。那么它们用来干嘛的？
+
+因为有些 npm 包安装是需要编译的，那么导致 windows / mac /linux 上编译出的可执行文件是不同的，也就是无法通用，因此我们在提交代码到 git 上去的时候，一般都会在 .gitignore 里指定忽略 node_modules 目录和里面的文件，这样其他人从 git 上拉下来的项目是没有 node_modules 目录的，这时我们需要运行
+
+npm install
+它会读取 package.json 中的 devDependencies 和 dependencies 字段，把记录的包的相应版本下载下来。
+
+这里 eslint-config-enough 是配置文件，它规定了代码规范，要使它生效，我们要在 package.json 中添加内容：
+
+{
+  "eslintConfig": {
+    "extends": "enough",
+    "env": {
+      "browser": true,
+      "node": true
+    }
+  }
+}
+业界最有名的语法规范是 airbnb 出品的，但它规定的太死板了，比如不允许使用 for-of 和 for-in 等。感兴趣的同学可以参照 这里 安装使用。
+
+babel-eslint 是 eslint-config-enough 依赖的语法解析库，替代 eslint 默认的解析库以支持还未标准化的语法。比如 import()。
+
+eslint-loader 用于在 webpack 编译的时候检查代码，如果有错误，webpack 会报错。
+
+项目里安装了 eslint 还没用，我们的 IDE 和编辑器也得要装 eslint 插件支持它。
+
+
+
+--------------------------------------------------------------------------------------------
+
+
+https://github.com/wallstreetcn/webpack-and-spa-guide
+
+安装 webpack 和 Babel
+我们把 webpack 和它的插件安装到项目：
+
+npm install webpack webpack-cli webpack-serve html-webpack-plugin html-loader css-loader style-loader file-loader url-loader --save-dev
+webpack 即 webpack 核心库。它提供了很多 API, 通过 Node.js 脚本中 require('webpack') 的方式来使用 webpack。
+
+webpack-cli 是 webpack 的命令行工具。让我们可以不用写打包脚本，只需配置打包配置文件，然后在命令行输入 webpack-cli --config webpack.config.js 来使用 webpack, 简单很多。webpack 4 之前命令行工具是集成在 webpack 包中的，4.0 开始 webpack 包本身不再集成 cli。
+
+webpack-serve 是 webpack 提供的用来开发调试的服务器，让你可以用 http://127.0.0.1:8080/ 这样的 url 打开页面来调试，有了它就不用配置 nginx 了，方便很多。
+
+html-webpack-plugin, html-loader, css-loader, style-loader 等看名字就知道是打包 html 文件，css 文件的插件，大家在这里可能会有疑问，html-webpack-plugin 和 html-loader 有什么区别，css-loader 和 style-loader 有什么区别，我们等会看配置文件的时候再讲。
+
+file-loader 和 url-loader 是打包二进制文件的插件，具体也在配置文件章节讲解。
+
+
+
+接下来，为了能让不支持 ES6 的浏览器 （比如 IE) 也能照常运行，我们需要安装 babel, 它会把我们写的 ES6 源代码转化成 ES5，这样我们源代码写 ES6，打包时生成 ES5。
+
+npm install babel-core babel-preset-env babel-loader --save-dev
+这里 babel-core 顾名思义是 babel 的核心编译器。babel-preset-env 是一个配置文件，我们可以使用这个配置文件转换 ES2015/ES2016/ES2017 到 ES5，是的，不只 ES6 哦。babel 还有 其他配置文件。
+
+光安装了 babel-preset-env，在打包时是不会生效的，需要在 package.json 加入 babel 配置：
+
+{
+  "babel": {
+    "presets": ["env"]
+  }
+}
+打包时 babel 会读取 package.json 中 babel 字段的内容，然后执行相应的转换。
+
+babel-loader 是 webpack 的插件，我们下面章节再说。
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------------------------
+
+配置 webpack
+包都装好了，接下来总算可以进入正题了。我们来创建 webpack 配置文件 webpack.config.js，注意这个文件是在 node.js 中运行的，因此不支持 ES6 的 import 语法。我们来看文件内容：
+
+const { resolve } = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const history = require('connect-history-api-fallback')
+const convert = require('koa-connect')
+
+// 使用 WEBPACK_SERVE 环境变量检测当前是否是在 webpack-server 启动的开发环境中
+const dev = Boolean(process.env.WEBPACK_SERVE)
+
+module.exports = {
+  /*
+  webpack 执行模式
+  development：开发环境，它会在配置文件中插入调试相关的选项，比如 moduleId 使用文件路径方便调试
+  production：生产环境，webpack 会将代码做压缩等优化
+  */
+  mode: dev ? 'development' : 'production',
+
+  /*
+  配置 source map
+  开发模式下使用 cheap-module-eval-source-map, 生成的 source map 能和源码每行对应，方便打断点调试
+  生产模式下使用 hidden-source-map, 生成独立的 source map 文件，并且不在 js 文件中插入 source map 路径，用于在 error report 工具中查看 （比如 Sentry)
+  */
+  devtool: dev ? 'cheap-module-eval-source-map' : 'hidden-source-map',
+
+  // 配置页面入口 js 文件
+  entry: './src/index.js',
+
+  // 配置打包输出相关
+  output: {
+    // 打包输出目录
+    path: resolve(__dirname, 'dist'),
+
+    // 入口 js 的打包输出文件名
+    filename: 'index.js'
+  },
+
+  module: {
+    /*
+    配置各种类型文件的加载器，称之为 loader
+    webpack 当遇到 import ... 时，会调用这里配置的 loader 对引用的文件进行编译
+    */
+    rules: [
+      {
+        /*
+        使用 babel 编译 ES6 / ES7 / ES8 为 ES5 代码
+        使用正则表达式匹配后缀名为 .js 的文件
+        */
+        test: /\.js$/,
+
+        // 排除 node_modules 目录下的文件，npm 安装的包不需要编译
+        exclude: /node_modules/,
+
+        /*
+        use 指定该文件的 loader, 值可以是字符串或者数组。
+        这里先使用 eslint-loader 处理，返回的结果交给 babel-loader 处理。loader 的处理顺序是从最后一个到第一个。
+        eslint-loader 用来检查代码，如果有错误，编译的时候会报错。
+        babel-loader 用来编译 js 文件。
+        */
+        use: ['babel-loader', 'eslint-loader']
+      },
+
+      {
+        // 匹配 html 文件
+        test: /\.html$/,
+        /*
+        使用 html-loader, 将 html 内容存为 js 字符串，比如当遇到
+        import htmlString from './template.html';
+        template.html 的文件内容会被转成一个 js 字符串，合并到 js 文件里。
+        */
+        use: 'html-loader'
+      },
+
+      {
+        // 匹配 css 文件
+        test: /\.css$/,
+
+        /*
+        先使用 css-loader 处理，返回的结果交给 style-loader 处理。
+        css-loader 将 css 内容存为 js 字符串，并且会把 background, @font-face 等引用的图片，
+        字体文件交给指定的 loader 打包，类似上面的 html-loader, 用什么 loader 同样在 loaders 对象中定义，等会下面就会看到。
+        */
+        use: ['style-loader', 'css-loader']
+      },
+
+      {
+        /*
+        匹配各种格式的图片和字体文件
+        上面 html-loader 会把 html 中 <img> 标签的图片解析出来，文件名匹配到这里的 test 的正则表达式，
+        css-loader 引用的图片和字体同样会匹配到这里的 test 条件
+        */
+        test: /\.(png|jpg|jpeg|gif|eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
+
+        /*
+        使用 url-loader, 它接受一个 limit 参数，单位为字节(byte)
+
+        当文件体积小于 limit 时，url-loader 把文件转为 Data URI 的格式内联到引用的地方
+        当文件大于 limit 时，url-loader 会调用 file-loader, 把文件储存到输出目录，并把引用的文件路径改写成输出后的路径
+
+        比如 views/foo/index.html 中
+        <img src="smallpic.png">
+        会被编译成
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAA...">
+
+        而
+        <img src="largepic.png">
+        会被编译成
+        <img src="/f78661bef717cf2cc2c2e5158f196384.png">
+        */
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10000
+            }
+          }
+        ]
+      }
+    ]
+  },
+
+  /*
+  配置 webpack 插件
+  plugin 和 loader 的区别是，loader 是在 import 时根据不同的文件名，匹配不同的 loader 对这个文件做处理，
+  而 plugin, 关注的不是文件的格式，而是在编译的各个阶段，会触发不同的事件，让你可以干预每个编译阶段。
+  */
+  plugins: [
+    /*
+    html-webpack-plugin 用来打包入口 html 文件
+    entry 配置的入口是 js 文件，webpack 以 js 文件为入口，遇到 import, 用配置的 loader 加载引入文件
+    但作为浏览器打开的入口 html, 是引用入口 js 的文件，它在整个编译过程的外面，
+    所以，我们需要 html-webpack-plugin 来打包作为入口的 html 文件
+    */
+    new HtmlWebpackPlugin({
+      /*
+      template 参数指定入口 html 文件路径，插件会把这个文件交给 webpack 去编译，
+      webpack 按照正常流程，找到 loaders 中 test 条件匹配的 loader 来编译，那么这里 html-loader 就是匹配的 loader
+      html-loader 编译后产生的字符串，会由 html-webpack-plugin 储存为 html 文件到输出目录，默认文件名为 index.html
+      可以通过 filename 参数指定输出的文件名
+      html-webpack-plugin 也可以不指定 template 参数，它会使用默认的 html 模板。
+      */
+      template: './src/index.html',
+
+      /*
+      因为和 webpack 4 的兼容性问题，chunksSortMode 参数需要设置为 none
+      https://github.com/jantimon/html-webpack-plugin/issues/870
+      */
+      chunksSortMode: 'none'
+    })
+  ]
+}
+
+/*
+配置开发时用的服务器，让你可以用 http://127.0.0.1:8080/ 这样的 url 打开页面来调试
+并且带有热更新的功能，打代码时保存一下文件，浏览器会自动刷新。比 nginx 方便很多
+如果是修改 css, 甚至不需要刷新页面，直接生效。这让像弹框这种需要点击交互后才会出来的东西调试起来方便很多。
+
+因为 webpack-cli 无法正确识别 serve 选项，使用 webpack-cli 执行打包时会报错。
+因此我们在这里判断一下，仅当使用 webpack-serve 时插入 serve 选项。
+issue：https://github.com/webpack-contrib/webpack-serve/issues/19
+*/
+if (dev) {
+  module.exports.serve = {
+    // 配置监听端口，默认值 8080
+    port: 8080,
+
+    // add: 用来给服务器的 koa 实例注入 middleware 增加功能
+    add: app => {
+      /*
+      配置 SPA 入口
+
+      SPA 的入口是一个统一的 html 文件，比如
+      http://localhost:8080/foo
+      我们要返回给它
+      http://localhost:8080/index.html
+      这个文件
+      */
+      app.use(convert(history()))
+    }
+  }
+}
+
+
+
+---------------------------------------------------------------------------------------------------------------
+
+配置 OK 了，接下来我们就运行一下吧。我们先试一下开发环境用的 webpack-serve:
+
+./node_modules/.bin/webpack-serve webpack.config.js
+执行时需要指定配置文件。
+
+上面的命令适用于 Mac / Linux 等 * nix 系统，也适用于 Windows 上的 PowerShell 和 bash/zsh 环境（Windows Subsystem for Linux, Git Bash、Babun、MSYS2 等）。安利一下 Windows 同学使用 Ubuntu on Windows，可以避免很多跨平台的问题，比如设置环境变量。
+
+如果使用 Windows 的 cmd.exe，请执行：
+
+node_modules\.bin\webpack-serve webpack.config.js
+npm 会把包的可执行文件安装到 ./node_modules/.bin/ 目录下，所以我们要在这个目录下执行命令。
+
+命令执行后，控制台显示：
+
+｢wdm｣: Compiled successfully。
+这就代表编译成功了，我们可以在浏览器打开 http://localhost:8080/ 看看效果。如果有报错，那可能是什么地方没弄对？请自己仔细检查一下～
+
+我们可以随意更改一下 src 目录下的源代码，保存后，浏览器里的页面应该很快会有相应变化。
+
+要退出编译，按 ctrl+c。
+
+开发环境编译试过之后，我们试试看编译生产环境的代码，命令是：
+
+./node_modules/.bin/webpack-cli
+不需要指定配置文件，默认读取 webpack.config.js
+
+执行脚本的命令有点麻烦，因此，我们可以利用 npm，把命令写在 package.json 中：
+
+{
+  "scripts": {
+    "dev": "webpack-serve webpack.config.js",
+    "build": "webpack-cli"
+  }
+}
+package.json 中的 scripts 对象，可以用来写一些脚本命令，命令不需要前缀目录 ./node_modules/.bin/，npm 会自动寻找该目录下的命令。我们可以执行：
+
+npm run dev
+来启动开发环境。
+
+执行
+
+npm run build
+来打包生产环境的代码。
+
+-------------------------------------------------------------------------------------------------
+
+
+上传到服务器，并解压
+tar -xvf node-v10.15.3-linux-x64.tar.xz ,将解压出来的文件夹改个名mv node-v10.15.3-linux-x64 nodejs
+
+3.配置环境变量
+
+ln -s nodejs位置/bin/npm /usr/local/bin/
+ln -s nodejs位置/bin/node /usr/local/bin/
+
+4.查看安装是否正确node -v,出现node版本信息则正确
+
+5.安装pm2
+
+npm install pm2 -g
+
+看输出日志有安装目录
+//配置pm2全局环境
+ln -s nodejs位置/bin/pm2 /usr/local/bin/pm2
+
+ln -s /usr/bin/pm2  /usr/local/bin/pm2
+
+覆盖路径
+ln -sf  /usr/bin/pm2  /usr/local/bin/pm2
+
+6.pm2常用操作
+
+   6.1 pm2 start bin/www 或 pm2 start app.js  启动进程/应用
+   6.2 pm2 start app.js --name wb123  重命名进程/应用                  
+   6.3 pm2 start bin/www --watch  添加进程/应用 watch              
+   6.4 pm2 stop www  结束进程/应用                    
+   6.5 pm2 stop all  结束所有进程/应用                 
+   6.6 pm2 delete www  删除进程/应用                     
+   6.7 pm2 delete all  删除所有进程/应用                    
+   6.8 pm2 list  列出所有进程/应用                 
+   6.9 pm2 describe www  查看某个进程/应用具体情况          
+   6.10 pm2 monit  查看进程/应用的资源消耗情况       
+   6.11 pm2 logs  查看pm2的日志                    
+   6.12 pm2 logs www  若要查看某个进程/应用的日志,使用  
+   6.13 pm2 restart www  重新启动进程/应用                
+   6.14 pm2 restart all  重新启动所有进程/应用            
+7.pm2配置多线程
+
+pm2 start app.js -i 0 //-i后面的数字为0则是根据cpu线程数智能开启，也可以自己指定开启的线程数。
+
+pm2 scale app.js +3 //调整线程数量，在当前基础上加3个工作线程。
+
+==========================================
+启动node.js代码，vue 项目
+
+vue 3.0 启动项目自动打开浏览器设置 npm run serve：
+
+
+配置文件 vue.config.js文件的配置
+
+devServer: {
+        open: true,
+}
+
+
+
+
+2.vue启动项目报错：npm ERR! missing script: serve
+npm run serve 
+
+问题原因：
+在配置文件中的服务器名称和你启动命令中的名称不匹配。
+
+解决方法：
+查看配置文件package.json 中服务器名称，并修改启动命令。
+
+
+
+
+3.配置默认访问index页面
+main.js是我们的入口文件，主要作用是初始化vue实例并使用需要的插件，这里new Vue代表新建vue对象。
+App.vue是我们的主组件，所有页面都是在App.vue下进行切换的。vue中的页面都是单页面，但是都是index.html上承载的，
+这就是为什么你能在index.html中看到id为app的div，其实就是和App.vue对应，App.vue里面的标签将会把路由相关内容（index.js）
+渲染在这个地方，总之index.html是项目运行的入口。
+
+项目加载的过程是index.tml->main.js->app.vue->index.js->单页面（XXX.vue）
+
+
+
+
+4、异常Component template should contain exactly one root element. If you are using v-if on multiple elements, use v-else-if to chain them instead.
+　刚开始这样写得时候是没有发现啥错误的，我只是在后面添加一个<div></div>或是加了别的就说出现这个错误
+
+<template>
+    <el-button type="primary">{{test1}}</el-button>
+</template>
+　　原来vue模板只能有一个根对象
+
+所以你想要出现正常的效果，你的用一个div来或是别的标签来包裹全部的元素
+
+正确的写法就是：
+
+
+<template>
+    <div>
+        <el-button type="primary">haha1</el-button>
+        <div>hahhaa</div>
+        <el-input type="text" placeholder="测试一下"></el-input>
+        <h1>{{test1}}</h1>
+    </div>
+</template>
+
+
+
+
+Vue多视图，怎么在一个页面里面展示多个模板
+
+
+   <router-view class='abc'  name='a1'></router-view>
+
+<router-view class='abc'  name='a2'></router-view>
+
+<router-view class='abc'  name='a3'></router-view>
+
+
+在router.js里面配置
+
+ 
+
+router:[
+
+  {
+
+   path:'/',
+
+   name:'yaohuiqian',
+
+   components:{
+
+        a1:mobana,
+
+        a2:mobanb,
+
+        a3:mobanc
+
+}
+}
+]
+
+
+5.VUE前端代码打包后上传到服务器上js css 文件404
+
+
+===============
+6、Vue 请求数据时报错：This dependency was not found:
+
+ 其实报这个错误就是因为没有安装依赖关系，安装以下依赖就可以了。在vue-cli中默认没有scss-loader,scss-loader又需要node-sass，只安装scss-loader是不行的。另外webpack就不需要配置了，因为vue-cli会帮你配置安装的loader。
+在命令行中分别输入一下命令：
+npm install node-sass --save cnpm
+npm install sass-loader --save cnpm
+npm install scss --save cnpm
+npm install scss-loader --save cnpm
+
+
+vue引用插件的方法
+
+
+==============================================================
+【已解决】让npm run dev在Linux后台 持久运行。
+原创黑夜的风 最后发布于2018-06-21 17:19:17 阅读数 17287  收藏
+展开
+命令行输入：
+
+which nohup
+复制这个地址。一般是/usr/bin
+
+/usr/bin/nohup
+
+
+cd
+vi .bash_profile
+
+vi ~/.bash_profile
+1
+在它的最后一行，即 PATH=$PATH:$HOME/bin 的后面添加刚才查询的地址:
+
+就像这样 PATH=$PATH:$HOME/bin:/usr/bin
+
+
+即：
+加载环境变量
+source ~/.bash_profile
+ 
+
+cd 回到你的项目目录。
+
+ 
+
+如果你想记录日志文件【新建日志记录文件】
+
+touch my.log
+chmod u+w my.log
+nohup npm run dev > my.log 2>my.log & exit
+如果没有报错，就成功了。此时可以看到网页运行成功。
+
+最后，一定要控制台执行exit，退出登录。
+
+【不记录日志】
+
+nohup npm run dev >/dev/null 2>&1 & exit
+ 
+关闭 Node 进程
+输入 ps -A 调出任务管理器，kill 掉 node 进程。
+
+ ps -A | grep  node
+
+
+===================================================================================
+
+nginx conf 配置 详情
+Nginx配置文件nginx.conf中文详解（总结）
+2012-12-16 14:56:38            收藏   我要投稿
+
+ 
+
+PS：Nginx使用有两三年了，现在经常碰到有新用户问一些很基本的问题，我也没时间一一回答，今天下午花了点时间，结合自己的使用经验，把Nginx的主要配置参数说明分享一下，也参考了一些网络的内容，这篇是目前最完整的Nginx配置参数中文说明了。更详细的模块参数请参考：http://wiki.nginx.org/Main
+
+ 
+
+ 
+
+#定义Nginx运行的用户和用户组
+
+user www www;
+
+ 
+
+#nginx进程数，建议设置为等于CPU总核心数。
+
+worker_processes 8;
+
+ 
+
+#全局错误日志定义类型，[ debug | info | notice | warn | error | crit ]
+
+error_log ar/loginx/error.log info;
+
+ 
+
+#进程文件
+
+pid ar/runinx.pid;
+
+ 
+
+#一个nginx进程打开的最多文件描述符数目，理论值应该是最多打开文件数（系统的值ulimit -n）与nginx进程数相除，但是nginx分配请求并不均匀，所以建议与ulimit -n的值保持一致。
+
+worker_rlimit_nofile 65535;
+
+ 
+
+#工作模式与连接数上限
+
+events
+
+{
+
+#参考事件模型，use [ kqueue | rtsig | epoll | /dev/poll | select | poll ]; epoll模型是Linux 2.6以上版本内核中的高性能网络I/O模型，如果跑在FreeBSD上面，就用kqueue模型。
+
+use epoll;
+
+#单个进程最大连接数（最大连接数=连接数*进程数）
+
+worker_connections 65535;
+
+}
+
+ 
+
+#设定http服务器
+
+http
+
+{
+
+include mime.types; #文件扩展名与文件类型映射表
+
+default_type application/octet-stream; #默认文件类型
+
+#charset utf-8; #默认编码
+
+server_names_hash_bucket_size 128; #服务器名字的hash表大小
+
+client_header_buffer_size 32k; #上传文件大小限制
+
+large_client_header_buffers 4 64k; #设定请求缓
+
+client_max_body_size 8m; #设定请求缓
+
+sendfile on; #开启高效文件传输模式，sendfile指令指定nginx是否调用sendfile函数来输出文件，对于普通应用设为 on，如果用来进行下载等应用磁盘IO重负载应用，可设置为off，以平衡磁盘与网络I/O处理速度，降低系统的负载。注意：如果图片显示不正常把这个改成off。
+
+autoindex on; #开启目录列表访问，合适下载服务器，默认关闭。
+
+tcp_nopush on; #防止网络阻塞
+
+tcp_nodelay on; #防止网络阻塞
+
+keepalive_timeout 120; #长连接超时时间，单位是秒
+
+ 
+
+#FastCGI相关参数是为了改善网站的性能：减少资源占用，提高访问速度。下面参数看字面意思都能理解。
+
+fastcgi_connect_timeout 300;
+
+fastcgi_send_timeout 300;
+
+fastcgi_read_timeout 300;
+
+fastcgi_buffer_size 64k;
+
+fastcgi_buffers 4 64k;
+
+fastcgi_busy_buffers_size 128k;
+
+fastcgi_temp_file_write_size 128k;
+
+ 
+
+#gzip模块设置
+
+gzip on; #开启gzip压缩输出
+
+gzip_min_length 1k; #最小压缩文件大小
+
+gzip_buffers 4 16k; #压缩缓冲区
+
+gzip_http_version 1.0; #压缩版本（默认1.1，前端如果是squid2.5请使用1.0）
+
+gzip_comp_level 2; #压缩等级
+
+gzip_types text/plain application/x-javascript text/css application/xml;
+
+#压缩类型，默认就已经包含textml，所以下面就不用再写了，写上去也不会有问题，但是会有一个warn。
+
+gzip_vary on;
+
+#limit_zone crawler $binary_remote_addr 10m; #开启限制IP连接数的时候需要使用
+
+ 
+
+upstream blog.ha97.com {
+
+#upstream的负载均衡，weight是权重，可以根据机器配置定义权重。weigth参数表示权值，权值越高被分配到的几率越大。
+
+server 192.168.80.121:80 weight=3;
+
+server 192.168.80.122:80 weight=2;
+
+server 192.168.80.123:80 weight=3;
+
+}
+
+ 
+
+#虚拟主机的配置
+
+server
+
+{
+
+#监听端口
+
+listen 80;
+
+#域名可以有多个，用空格隔开
+
+server_name www.ha97.com ha97.com;
+
+index index.html index.htm index.php;
+
+root /data/www/ha97;
+
+location ~ .*.(php|php5)?$
+
+{
+
+fastcgi_pass 127.0.0.1:9000;
+
+fastcgi_index index.php;
+
+include fastcgi.conf;
+
+}
+
+#图片缓存时间设置
+
+location ~ .*.(gif|jpg|jpeg|png|bmp|swf)$
+
+{
+
+expires 10d;
+
+}
+
+#JS和CSS缓存时间设置
+
+location ~ .*.(js|css)?$
+
+{
+
+expires 1h;
+
+}
+
+#日志格式设定
+
+log_format access '$remote_addr - $remote_user [$time_local] "$request" '
+
+'$status $body_bytes_sent "$http_referer" '
+
+'"$http_user_agent" $http_x_forwarded_for';
+
+#定义本虚拟主机的访问日志
+
+access_log ar/loginx/ha97access.log access;
+
+ 
+
+#对 "/" 启用反向代理
+
+location / {
+
+proxy_pass http://127.0.0.1:88;
+
+proxy_redirect off;
+
+proxy_set_header X-Real-IP $remote_addr;
+
+#后端的Web服务器可以通过X-Forwarded-For获取用户真实IP
+
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+#以下是一些反向代理的配置，可选。
+
+proxy_set_header Host $host;
+
+client_max_body_size 10m; #允许客户端请求的最大单文件字节数
+
+client_body_buffer_size 128k; #缓冲区代理缓冲用户端请求的最大字节数，
+
+proxy_connect_timeout 90; #nginx跟后端服务器连接超时时间(代理连接超时)
+
+proxy_send_timeout 90; #后端服务器数据回传时间(代理发送超时)
+
+proxy_read_timeout 90; #连接成功后，后端服务器响应时间(代理接收超时)
+
+proxy_buffer_size 4k; #设置代理服务器（nginx）保存用户头信息的缓冲区大小
+
+proxy_buffers 4 32k; #proxy_buffers缓冲区，网页平均在32k以下的设置
+
+proxy_busy_buffers_size 64k; #高负荷下缓冲大小（proxy_buffers*2）
+
+proxy_temp_file_write_size 64k;
+
+#设定缓存文件夹大小，大于这个值，将从upstream服务器传
+
+}
+
+ 
+
+#设定查看Nginx状态的地址
+
+location /NginxStatus {
+
+stub_status on;
+
+access_log on;
+
+auth_basic "NginxStatus";
+
+auth_basic_user_file confpasswd;
+
+#htpasswd文件的内容可以用apache提供的htpasswd工具来产生。
+
+}
+
+ 
+
+#本地动静分离反向代理配置
+
+#所有jsp的页面均交由tomcat或resin处理
+
+location ~ .(jsp|jspx|do)?$ {
+
+proxy_set_header Host $host;
+
+proxy_set_header X-Real-IP $remote_addr;
+
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+proxy_pass http://127.0.0.1:8080;
+
+}
+
+#所有静态文件由nginx直接读取不经过tomcat或resin
+
+location ~ .*.(htm|html|gif|jpg|jpeg|png|bmp|swf|ioc|rar|zip|txt|flv|mid|doc|ppt|pdf|xls|mp3|wma)$
+
+{ expires 15d; }
+
+location ~ .*.(js|css)?$
+
+{ expires 1h; }
+
+}
+
+}
+
+ 
+
+更详细的模块参数请参考：http://wiki.nginx.org/Main
+
+
+
+
+
