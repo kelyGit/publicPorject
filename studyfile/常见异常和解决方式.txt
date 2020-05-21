@@ -1,0 +1,108 @@
+;D:\kely\develop\Microsoft VS Code_vue\bin;D:\kely\develop\nodejs\node_global;
+
+D:\kely\develop\app\lenovo\product\11.2.0\client_1;C:\ProgramData\Oracle\Java\javapath;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\OpenCL SDK\2.0\bin\x86;C:\Program Files (x86)\Intel\OpenCL SDK\2.0\bin\x64;D:\develop\Git\cmd;C:\Program Files\TortoiseSVN\bin;D:\kely\develop\TortoiseGit\bin;%M2_HOME%\bin;%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;D:\kely\develop\nodejs\node-v8.14.0-win-x64;D:\kely\develop\mysql-5.7.20-winx64\bin;
+
+
+
+D:\kely\develop\app\lenovo\product\11.2.0\client_1;C:\ProgramData\Oracle\Java\javapath;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\OpenCL SDK\2.0\bin\x86;C:\Program Files (x86)\Intel\OpenCL SDK\2.0\bin\x64;D:\develop\Git\cmd;C:\Program Files\TortoiseSVN\bin;D:\kely\develop\TortoiseGit\bin;%M2_HOME%\bin;%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;D:\kely\develop\nodejs\node-v8.14.0-win-x64;D:\kely\develop\mysql-5.7.20-winx64\bin;
+
+
+1.8	1.8.0_92	http://java.sun.com/products/autodl/j2se	D:\develop\java\jre\bin\javaw.exe		false
+
+严重性和描述	路径	资源	位置	创建时间	标识
+项目 lmtSaip 缺少必需的源文件夹“com.saip.application/src”		lmtSaip	构建路径	1558678202508	82
+
+
+CREATION_TIME
+
+CREATION_TIME
+
+==========================
+------异常 
+Description	Resource	Path	Location	Type
+Unknown	pom.xml	/imoa-common	line 1	Maven pom Loading Problem
+
+----解决方式
+右击项目名称->maven->update project ->选中force update of snapshots/release
+
+=======================================================================
+
+------异常 
+Description	Resource	Path	Location	Type
+Plugin execution not covered by lifecycle configuration: org.codehaus.mojo:exec-maven-plugin:1.3.2:exec (execution: exec-npm-install, phase: generate-sources)	pom.xml	/imoa-web-jobs	line 118	Maven Project Build Lifecycle Mapping Problem
+
+-------解决方式
+1、Window—>Preferences—>Maven配置，进入Lifecycle Mapping设置项2、lifecycle-mapping-metadata.xml文件在以到eclipse的安装目录下的plugins下的org.eclipse.m2e.lifecyclemapping.defaults_xxxxxx.jar文件中找到该文件
+解压后可以发现lifecycle-mapping-metadata.xml文件的确在jar包中
+
+3.在lifecycle-mapping-metadata.xml文件文件添加
+		    <pluginExecution>
+      <pluginExecutionFilter>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <versionRange>[3.1,)</versionRange>
+        <goals>
+          <goal>testCompile</goal>
+          <goal>compile</goal>
+        </goals>
+      </pluginExecutionFilter>
+      <action>
+        <ignore/>
+      </action>
+    </pluginExecution>
+
+4、修改完成后，需在m2e配置处把“Update Maven projects on startup”选项勾上，并重启eclipse即可消除出错提示。
+
+
+
+=======================================================================
+
+-----异常
+Description	Resource	Path	Location	Type
+Project configuration is not up-to-date with pom.xml. Select: Maven->Update Project... from the project context menu or use Quick Fix.	imoa-web-jobs		line 1	Maven Configuration Problem
+
+---解决方式
+右击项目名称->maven->update project
+
+
+
+==================================================
+----异常
+Description	Resource	Path	Location	Type
+AbstractPersistable cannot be resolved to a type	Accompany.java	/gbss-eimoa/imoa-service/src/main/java/cn/com/infinitus/imoa/infoPlatform/domain	line 18	Java Problem
+
+------解决方式
+缺少jar   ，找到对应jar包，右键  - 同build add path
+
+
+
+==================
+Description	Resource	Path	Location	Type
+The project was not built since its build path is incomplete. Cannot find the class file for com.google.gson.Gson. Fix the build path then try building this project	gbss-eimoa		Unknown	Java Problem
+
+Description	Resource	Path	Location	Type
+Unknown	gbss-eimoa	Unknown	Unknown	org.eclipse.core.internal.resources.Marker@bdda0dff is not of a displayable type
+
+
+
+git提交异常================================
+
+首先是你的项目中有和和历史不符的东西 
+Push rejected: Push to origin/master was rejected 
+推拒绝：推送到起源/主人被拒绝 
+直接是解决办法，直接打开你要上传代码的文件夹位置鼠标右键git Bash Here然后直接下面两行命令解决问题
+
+git pull origin master –allow-unrelated-histories 
+git push -u origin master -f
+ 
+ 
+ yic====P
+ 
+ 
+ =Error:(262, 79) java: 找不到符号
+  符号:   方法 checkCanReceiveNewComer2019ForRedis(java.lang.String)
+  位置: 类型为com.infinitus.jf.newComer.api.NewComerService的变量 newComerService
+
+
+
+
